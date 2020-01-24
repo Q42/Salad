@@ -2,6 +2,10 @@
 
 Lightweight Cucumber-style UI tests for iOS.
 
+## How does it work?
+
+We have a simple demo app that shows how you can use Salad for UI testing: [Q42/Salad.DemoApp](https://github.com/Q42/Salad.DemoApp)
+
 ## Installation
 
 ### Swift package manager
