@@ -1,18 +1,7 @@
-#
-# Be sure to run `pod lib lint SaladTest.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = 'Salad'
-  s.version          = '0.1.0'
+  s.version          = '0.0.1'
   s.summary          = 'Lightweight cucumber style UI tests for iOS.'
-  s.description      = <<-DESC
-  Lightweight cucumber style UI tests for iOS.
-                       DESC
 
   s.homepage         = 'https://github.com/Q42/Salad'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
