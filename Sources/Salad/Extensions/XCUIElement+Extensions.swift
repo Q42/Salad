@@ -29,13 +29,19 @@ public extension XCUIElement {
     return waitThenCheck(timeout: timeout) { self.label == value }
   }
 
-  private func waitThenCheck(timeout: TimeOut, conditionToCheck: () -> Bool) -> Bool {
-    for _ in 0...timeout.numberOfPolls{
+  private func waitThenCheck(timeout: TimeOut, conditionToCheck: @escaping () -> Bool) -> Bool {
+    // We can't reach the XCTestCase that were currently inside of, so just create a new one instead.
+    let testCase = XCTestCase()
+
+    for _ in 0...timeout.numberOfPolls {
+      testCase.expectation(for: NSPredicate(block: { _, _ in conditionToCheck() }), evaluatedWith: self, handler: nil)
+      testCase.waitForExpectations(timeout: timeout.timeInterval, handler: nil)
+
       if conditionToCheck() {
         return true
       }
-      Thread.sleep(forTimeInterval: timeout.timeInterval/Double(timeout.numberOfPolls))
     }
+
     return false
   }
 }
