@@ -16,4 +16,8 @@ Pod::Spec.new do |s|
   s.source_files = 'Sources/Salad/**/*'
   
   s.frameworks = 'XCTest', 'GameplayKit'
+
+  s.xcconfig = {
+    'ENABLE_BITCODE' => 'NO'
+  }
 end
