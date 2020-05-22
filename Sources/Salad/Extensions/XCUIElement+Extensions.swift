@@ -10,26 +10,26 @@ import XCTest
 
 public extension XCUIElement {
   func waitForExist(timeout: TimeOut) -> Bool {
-    return waitThenCheck(timeout: timeout) { self.exists }
+    return waitForCondition(timeout: timeout) { self.exists }
   }
 
   func waitForExistsAndHittable(timeout: TimeOut) -> Bool {
-    return waitThenCheck(timeout: timeout) { self.exists && self.isHittable }
+    return waitForCondition(timeout: timeout) { self.exists && self.isHittable }
   }
 
   func waitForNotExists(timeout: TimeOut) -> Bool {
-    return waitThenCheck(timeout: timeout) { !self.exists }
+    return waitForCondition(timeout: timeout) { !self.exists }
   }
 
   func waitForValueNotNill(timeout: TimeOut) -> Bool {
-    return waitThenCheck(timeout: timeout) { self.value != nil }
+    return waitForCondition(timeout: timeout) { self.value != nil }
   }
 
   func waitForValue(timeout: TimeOut, value: String) -> Bool {
-    return waitThenCheck(timeout: timeout) { self.label == value }
+    return waitForCondition(timeout: timeout) { self.label == value }
   }
 
-  private func waitThenCheck(timeout: TimeOut, conditionToCheck: @escaping () -> Bool) -> Bool {
+  private func waitForCondition(timeout: TimeOut, conditionToCheck: @escaping () -> Bool) -> Bool {
     let expectation = XCTestExpectation()
 
     for _ in 0...timeout.numberOfPolls {
