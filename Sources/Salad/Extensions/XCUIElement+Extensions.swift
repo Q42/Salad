@@ -30,7 +30,6 @@ public extension XCUIElement {
   }
 
   private func waitThenCheck(timeout: TimeOut, conditionToCheck: @escaping () -> Bool) -> Bool {
-    let waiter = XCTWaiter()
     let expectation = XCTestExpectation()
 
     for _ in 0...timeout.numberOfPolls {
@@ -38,7 +37,7 @@ public extension XCUIElement {
         expectation.fulfill()
       }
 
-      let result = waiter.wait(for: [expectation], timeout: timeout.timeInterval)
+      let result = XCTWaiter.wait(for: [expectation], timeout: timeout.timeInterval)
 
       if case .completed = result {
         return true
