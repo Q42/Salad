@@ -30,14 +30,17 @@ public extension XCUIElement {
   }
 
   private func waitThenCheck(timeout: TimeOut, conditionToCheck: @escaping () -> Bool) -> Bool {
-    // We can't reach the XCTestCase that were currently inside of, so just create a new one instead.
-    let testCase = XCTestCase()
+    let waiter = XCTWaiter()
+    let expectation = XCTestExpectation()
 
     for _ in 0...timeout.numberOfPolls {
-      testCase.expectation(for: NSPredicate(block: { _, _ in conditionToCheck() }), evaluatedWith: self, handler: nil)
-      testCase.waitForExpectations(timeout: timeout.timeInterval, handler: nil)
-
       if conditionToCheck() {
+        expectation.fulfill()
+      }
+
+      let result = waiter.wait(for: [expectation], timeout: timeout.timeInterval)
+
+      if case .completed = result {
         return true
       }
     }
