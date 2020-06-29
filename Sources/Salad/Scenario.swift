@@ -20,18 +20,18 @@ public struct Scenario<FromView: ViewObject> {
     self.view = view
   }
 
-  public func when<B: Behaviour>(_ behaviour: B) -> Scenario<B.ToView> where B.FromView == FromView {
-    return XCTContext.runActivity(named: String(describing: B.self)) { activity in
-      Scenario<B.ToView>(given: behaviour.perform(from: view))
+  public func when<B: Behaviour>(_ behaviour: B) throws -> Scenario<B.ToView> where B.FromView == FromView {
+    return try XCTContext.runActivity(named: String(describing: B.self)) { activity in
+      Scenario<B.ToView>(given: try behaviour.perform(from: view))
     }
   }
 
-  public func when<ToView: ViewObject>(_ behaviourBlock: (FromView) -> ToView) -> Scenario<ToView> {
-    return Scenario<ToView>(given: behaviourBlock(view))
+  public func when<ToView: ViewObject>(_ behaviourBlock: (FromView) throws -> ToView) rethrows -> Scenario<ToView> {
+    return Scenario<ToView>(given: try behaviourBlock(view))
   }
 
   @discardableResult
-  public func then(_ thenBlock: (FromView) -> Void) -> Scenario<FromView> {
+  public func then(_ thenBlock: (FromView) -> Void) throws -> Scenario<FromView> {
     thenBlock(view)
     return self
   }

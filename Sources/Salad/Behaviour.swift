@@ -12,7 +12,7 @@ public protocol Behaviour {
   associatedtype FromView: ViewObject
   associatedtype ToView: ViewObject
 
-  func perform(from view: FromView) -> ToView
+  func perform(from view: FromView) throws -> ToView
 }
 
 public extension Behaviour {
@@ -30,8 +30,8 @@ public struct ChainedBehaviour<FirstBehaviour: Behaviour, SecondBehaviour: Behav
     self.secondBehaviour = secondBehaviour
   }
 
-  public func perform(from view: FirstBehaviour.FromView) -> SecondBehaviour.ToView {
-    let intermediateView = firstBehaviour.perform(from: view)
-    return secondBehaviour.perform(from: intermediateView)
+  public func perform(from view: FirstBehaviour.FromView) throws -> SecondBehaviour.ToView {
+    let intermediateView = try firstBehaviour.perform(from: view)
+    return try secondBehaviour.perform(from: intermediateView)
   }
 }
