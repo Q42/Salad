@@ -30,7 +30,7 @@ public extension ViewObject {
   /// - Parameter identifier: The accessibility identifier to look up
   /// - Returns: `XCUIElement` found using the given identifier
   func element(_ identifier: String) -> XCUIElement {
-    root.descendants(matching: .any).matching(identifier: identifier).firstMatch
+    root.descendants(matching: .any).matching(identifier: identifier).element
   }
 
   func assertIdentifyingElementExists(timeout: TimeOut, file: StaticString = #file, line: UInt = #line) {
