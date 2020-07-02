@@ -10,40 +10,27 @@ import XCTest
 
 public extension XCUIElement {
   func waitForExist(timeout: TimeOut) -> Bool {
-    return waitForCondition(timeout: timeout) { self.exists }
+    waitForExistence(timeout: timeout.timeInterval)
   }
 
   func waitForExistsAndHittable(timeout: TimeOut) -> Bool {
-    return waitForCondition(timeout: timeout) { self.exists && self.isHittable }
+    waitForPredicate(NSPredicate(format: "exists == true && hittable == true"), timeout: timeout)
   }
 
   func waitForNotExists(timeout: TimeOut) -> Bool {
-    return waitForCondition(timeout: timeout) { !self.exists }
+    waitForPredicate(NSPredicate(format: "exists == false"), timeout: timeout)
   }
 
-  func waitForValueNotNill(timeout: TimeOut) -> Bool {
-    return waitForCondition(timeout: timeout) { self.value != nil }
+  func waitForLabelNotNill(timeout: TimeOut) -> Bool {
+    waitForPredicate(NSPredicate(format: "label != nil"), timeout: timeout)
   }
 
-  func waitForValue(timeout: TimeOut, value: String) -> Bool {
-    return waitForCondition(timeout: timeout) { self.label == value }
+  func waitForLabel(toBecome value: String, timeout: TimeOut) -> Bool {
+    waitForPredicate(NSPredicate(format: "label == %@", value), timeout: timeout)
   }
 
-  private func waitForCondition(timeout: TimeOut, conditionToCheck: @escaping () -> Bool) -> Bool {
-    let expectation = XCTestExpectation()
-
-    for _ in 0...timeout.numberOfPolls {
-      if conditionToCheck() {
-        expectation.fulfill()
-      }
-
-      let result = XCTWaiter.wait(for: [expectation], timeout: timeout.timeInterval)
-
-      if case .completed = result {
-        return true
-      }
-    }
-
-    return false
+  private func waitForPredicate(_ predicate: NSPredicate, timeout: TimeOut) -> Bool {
+    let expectation = XCTNSPredicateExpectation(predicate: predicate, object: self)
+    return XCTWaiter.wait(for: [expectation], timeout: timeout.timeInterval) == .completed
   }
 }
