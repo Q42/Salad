@@ -33,6 +33,11 @@ public final class DeterministicValuePicker {
   private static let generatedSeed = generateSeed()
   private let randomSource: GKARC4RandomSource
 
+  /// Hex representation of the seed that is currently in use
+  ///
+  /// Can be used to recreate a new `DeterministicValuePicker` that will pick the exact same sequence of values as this instance.
+  let seedHexString: String
+
   /// Initializes a value picker with the specified seed.
   ///
   /// Any two value pickers initialized with the same test name and seed data will pick the same sequence of values. To
@@ -62,10 +67,11 @@ public final class DeterministicValuePicker {
     var randomSourceSeed = seedData
     randomSourceSeed.append(testNameData)
     randomSource = GKARC4RandomSource(seed: randomSourceSeed)
+    seedHexString = seedData.hexString
 
     let log = [
       "Seed type:  \(seedTypeUsed)",
-      "Seed value: \(seedData.hexString)",
+      "Seed value: \(seedHexString)",
       "Test name:  \(testName)",
       "Random source input: \(randomSourceSeed.hexString)",
     ].joined(separator: "\n")
