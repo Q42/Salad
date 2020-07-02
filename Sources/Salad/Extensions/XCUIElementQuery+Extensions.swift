@@ -11,7 +11,7 @@ import XCTest
 public extension XCUIElementQuery {
 
   func waitForCount(toBecome value: Int, timeout: TimeOut) -> Bool {
-    waitForPredicate(NSPredicate(format: "count == %@", value), timeout: timeout)
+    waitForPredicate(NSPredicate(format: "count == %i", value), timeout: timeout)
   }
 
   private func waitForPredicate(_ predicate: NSPredicate, timeout: TimeOut) -> Bool {
