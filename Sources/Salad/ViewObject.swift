@@ -35,16 +35,6 @@ public extension ViewObject {
 
   func assertIdentifyingElementExists(timeout: TimeOut, file: StaticString = #file, line: UInt = #line) {
     let elementToAssert = element(identifyingElementId)
-
-    // Check for element directly since `waitForExistence` always has a delay
-    if elementToAssert.exists {
-      return
-    }
-
-    if timeout.timeInterval == 0 {
-      XCTFail("Expected to be on view object '\(Self.self)', but identifying element '\(identifyingElementId)' does not exist. (Instant check, did not wait)", file: file, line: line)
-    } else {
-      XCTAssertTrue(elementToAssert.waitForExist(timeout: timeout), "Expected to be on view object '\(Self.self)', but identifying element '\(identifyingElementId)' does not exist. (Did wait for \(timeout.timeInterval) seconds)", file: file, line: line)
-    }
+    XCTAssertTrue(elementToAssert.waitForExist(timeout: timeout), "Expected to be on view object '\(Self.self)', but identifying element '\(identifyingElementId)' does not exist. (Did wait for \(timeout.timeInterval) seconds)", file: file, line: line)
   }
 }

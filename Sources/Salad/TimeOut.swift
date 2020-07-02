@@ -33,14 +33,4 @@ public enum TimeOut {
     case .asyncUI: return 1
     }
   }
-
-  public var numberOfPolls: Int {
-    switch self {
-    case .instant: return 0
-    case .regularNetworkCall: return 20
-    case .longNetworkCall: return 40
-    case .appSwitch: return 20
-    case .asyncUI: return 4
-    }
-  }
 }
