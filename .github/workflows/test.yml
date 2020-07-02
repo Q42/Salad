@@ -4,16 +4,15 @@ on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]
+    branches: *
 
 jobs:
   build:
-
     runs-on: macos-latest
-
     steps:
     - uses: actions/checkout@v2
-    - name: Build
-      run: swift build -v
+    # This is needed because Salad uses parts of XCTest that are not available to Swift packages 
+    - name: Generate Xcode project
+      run: swift package generate-xcodeproj
     - name: Run tests
-      run: swift test -v
+      run: xcodebuild build test -scheme Salad-Package -project Salad.xcodeproj | xcpretty
