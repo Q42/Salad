@@ -31,8 +31,8 @@ public struct Scenario<FromView: ViewObject> {
   }
 
   @discardableResult
-  public func then(_ thenBlock: (FromView) -> Void) -> Scenario<FromView> {
-    thenBlock(view)
+  public func then(_ thenBlock: (FromView) throws -> Void) -> Scenario<FromView> {
+    XCTAssertNoThrow(try thenBlock(view))
     return self
   }
 }
