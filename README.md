@@ -77,5 +77,6 @@ func testCreateTodoItem() {
 
 ## Version history
 
+* 2022-03-02: 0.0.3 release containing minor fixes
 * 2020-01-24: Initial open source release
 * 2019-07-01: Initial private version for a project at [Q42](http://q42.com)
