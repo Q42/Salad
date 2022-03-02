@@ -8,14 +8,6 @@ Lightweight Cucumber-style UI testing for iOS.
 
 Add `https://github.com/Q42/Salad.git` as a dependency of your UI test target(s).
 
-### Cocoapods
-
-```ruby
-target 'MyAppUITests' do
-  pod 'Salad', git: 'https://github.com/Q42/Salad.git'
-end
-```
-
 ## How it works
 
 The design pattern for testing using Salad consists of four concepts: View Objects, Behaviours, Data Objects and Tests. They are described in more detail below.
