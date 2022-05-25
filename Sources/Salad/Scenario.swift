@@ -9,6 +9,7 @@
 import Foundation
 import XCTest
 
+/// A structure that applies behaviours to views.
 public struct Scenario<FromView: ViewObject> {
   private let view: FromView
 
