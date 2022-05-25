@@ -30,9 +30,19 @@ public struct Scenario<FromView: ViewObject> {
     return Scenario<ToView>(given: behaviourBlock(view))
   }
 
+  public func when<ToView: ViewObject>(_ behaviourBlock: (FromView) throws -> ToView) rethrows -> Scenario<ToView> {
+    return Scenario<ToView>(given: try behaviourBlock(view))
+  }
+
   @discardableResult
   public func then(_ thenBlock: (FromView) -> Void) -> Scenario<FromView> {
     thenBlock(view)
+    return self
+  }
+
+  @discardableResult
+  public func then(_ thenBlock: (FromView) throws -> Void) rethrows -> Scenario<FromView> {
+    try thenBlock(view)
     return self
   }
 }
