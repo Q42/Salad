@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 
-/// A structure that applies behaviours to views.
+/// A structure that applies behaviors to views.
 public struct Scenario<FromView: ViewObject> {
   private let view: FromView
 
@@ -21,18 +21,18 @@ public struct Scenario<FromView: ViewObject> {
     self.view = view
   }
 
-  public func when<B: Behaviour>(_ behaviour: B) -> Scenario<B.ToView> where B.FromView == FromView {
+  public func when<B: Behavior>(_ behavior: B) -> Scenario<B.ToView> where B.FromView == FromView {
     return XCTContext.runActivity(named: String(describing: B.self)) { activity in
-      Scenario<B.ToView>(given: behaviour.perform(from: view))
+      Scenario<B.ToView>(given: behavior.perform(from: view))
     }
   }
 
-  public func when<ToView: ViewObject>(_ behaviourBlock: (FromView) -> ToView) -> Scenario<ToView> {
-    return Scenario<ToView>(given: behaviourBlock(view))
+  public func when<ToView: ViewObject>(_ behaviorBlock: (FromView) -> ToView) -> Scenario<ToView> {
+    return Scenario<ToView>(given: behaviorBlock(view))
   }
 
-  public func when<ToView: ViewObject>(_ behaviourBlock: (FromView) throws -> ToView) rethrows -> Scenario<ToView> {
-    return Scenario<ToView>(given: try behaviourBlock(view))
+  public func when<ToView: ViewObject>(_ behaviorBlock: (FromView) throws -> ToView) rethrows -> Scenario<ToView> {
+    return Scenario<ToView>(given: try behaviorBlock(view))
   }
 
   @discardableResult
