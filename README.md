@@ -18,7 +18,7 @@ end
 
 ## How it works
 
-The design pattern for testing using Salad consists of four concepts: View Objects, Behaviours, Data Objects and Tests. They are described in more detail below.
+The design pattern for testing using Salad consists of four concepts: View Objects, Behaviors, Data Objects and Tests. They are described in more detail below.
 
 We have a simple demo app that shows Salad UI testing in action: [github.com/Q42/Salad.DemoApp](https://github.com/Q42/Salad.DemoApp).
 
@@ -32,9 +32,9 @@ And for a `ToDoListView`, you can tap a button on it with the `tapAddButton()` m
 
 If any of these lookups fail, it will fail the UI test.
 
-### Behaviours
+### Behaviors
 
-Behaviours are used to perform certain actions on views. The protocol consists of one method:
+Behaviors are used to perform certain actions on views. The protocol consists of one method:
 
 ```swift
 func perform<FromView: ViewObject, ToView: ViewObject>(from view: FromView) -> ToView
@@ -50,7 +50,7 @@ Deterministic value pickers can be used to select pseudo-random test data using 
 
 ### Tests
 
-In the test classes, all the above is brought together. They are normal `XCTestCase` classes, but they use a Scenario from Salad to write tests that are less verbose and are more about behaviour of your app.
+In the test classes, all the above is brought together. They are normal `XCTestCase` classes, but they use a Scenario from Salad to write tests that are less verbose and are more about behavior of your app.
 You use the when/then methods to do this.
 
 ```swift
