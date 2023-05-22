@@ -7,8 +7,8 @@ on:
     branches: '*'
 
 jobs:
-  build:
+  test:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - run: swift test
