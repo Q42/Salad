@@ -36,8 +36,6 @@ public extension XCUIElement {
 
   /// Waits the amount of time you specify for the given predicate to become true.
   private func waitForPredicate(_ predicate: NSPredicate, timeout: TimeOut) -> Bool {
-    if case .instant = timeout { return false }
-
     let expectation = XCTNSPredicateExpectation(predicate: predicate, object: self)
     return XCTWaiter.wait(for: [expectation], timeout: timeout.timeInterval) == .completed
   }
