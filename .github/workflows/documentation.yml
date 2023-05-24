@@ -2,7 +2,7 @@ name: Deploy documentation
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "feature/build-documentation"]
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
