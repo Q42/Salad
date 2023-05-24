@@ -8,8 +8,18 @@ Salad helps you write UI tests in an organised manner, by letting you re-use vie
 
 ## Topics
 
-### Getting started
+### Essentials
 
+- <doc:GettingStarted>
 - ``ViewObject``
 - ``Behavior``
 - ``Scenario``
+
+### Randomizing test data
+
+- ``DeterministicValuePicker``
+
+### Utilities
+
+- ``TimeOut``
+- ``ChainedBehavior``
