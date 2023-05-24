@@ -11,7 +11,7 @@ import XCTest
 
 /// A structure in your test that corresponds to a view in your app, identified by its accessibility identifier.
 public protocol ViewObject {
-  /// Root element of the view.
+  /// The root element in which this view is located.
   var root: XCUIElement { get }
 
   /// The accessibility identifier unique to this view within the scope of the root element.
@@ -19,6 +19,7 @@ public protocol ViewObject {
   /// This element will be checked for existence when this `ViewObject` is created using `createVerifiedViewObject`.
   var identifyingElementId: String { get }
 
+  /// Creates an instance of the view given a root view.
   init(root: XCUIElement)
 }
 

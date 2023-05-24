@@ -10,16 +10,20 @@ import Foundation
 import GameplayKit
 import XCTest
 
-/// A basic "random" value picker, which is suitable for randomizing test data.
+/// A seeded random value picker, which is suitable for randomizing test data.
 ///
 /// When you create an instance of this class it is both independent and deterministic—that is, the sequence of picked
 /// values by one instance has no effect on what values are picked by any other instance, and that a sequence of picked
-/// values can be replicated when necessary. For details on replicating sequences, the initializer documentation.
+/// values can be replicated when necessary. For details on replicating sequences, see the initializer documentation.
 public final class DeterministicValuePicker {
+  /// The seed value used by the random number generator
   public enum Seed: ExpressibleByStringLiteral {
+    /// Generate a random seed.
     case generate
+    /// Use the specified seed
     case specified(String)
 
+    /// Creates an instance initialized to the given string value
     public init(stringLiteral value: String) {
       self = .specified(value)
     }
