@@ -70,11 +70,4 @@ final class DeterministicValuePickerTests: XCTestCase {
       XCTAssertEqual(invalidSeed, thrownSeed)
     }
   }
-
-  static var allTests = [
-    ("testPickedValueIsFromGivenList", testPickedValueIsFromGivenList),
-    ("testHardcodedInputYieldsDeterministicResult", testHardcodedInputYieldsDeterministicResult),
-    ("testClonedSeedYieldsDeterministicResult", testClonedSeedYieldsDeterministicResult),
-    ("testInvalidSeed", testInvalidSeed),
-  ]
 }
