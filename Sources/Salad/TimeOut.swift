@@ -33,10 +33,28 @@ public struct TimeOut: ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral, E
   /// The time interval of this time out
   public let timeInterval: TimeInterval
 
+  /// Creates an instance initialized to the specified floating-point value.
+  ///
+  /// Do not call this initializer directly. Instead, initialize a variable or
+  /// constant using a floating-point literal. For example:
+  ///
+  ///     let x: TimeOut = 21.5
+  ///
+  /// In this example, the assignment to the `x` constant calls this
+  /// floating-point literal initializer behind the scenes.
   public init(floatLiteral value: TimeInterval) {
     self.timeInterval = value
   }
 
+  /// Creates an instance initialized to the specified integer value.
+  ///
+  /// Do not call this initializer directly. Instead, initialize a variable or
+  /// constant using an integer literal. For example:
+  ///
+  ///     let x: TimeOut = 23
+  ///
+  /// In this example, the assignment to the `x` constant calls this integer
+  /// literal initializer behind the scenes.
   public init(integerLiteral value: TimeInterval) {
     self.timeInterval = value
   }

@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 
-/// A structure that applies behaviors to views.
+/// A structure that applies behaviors to views and lets you make assertions.
 public struct Scenario<FromView: ViewObject> {
   private let view: FromView
 
